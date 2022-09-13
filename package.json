@@ -1,0 +1,26 @@
+{
+  "name": "team-profile-generator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --verbose __tests__/*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sprantis/team-profile-generator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sprantis/team-profile-generator/issues"
+  },
+  "homepage": "https://github.com/sprantis/team-profile-generator#readme",
+  "dependencies": {
+    "inquirer": "^9.1.1"
+  },
+  "devDependencies": {
+    "jest": "^29.0.3"
+  }
+}
