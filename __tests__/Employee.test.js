@@ -1,6 +1,11 @@
+// Testing for Employee class
+// Able to use require for tests, but not for Inquirer and FS for some reason. 
 const Employee = require('../lib/Employee');
 
+// Group together 'Employee' related tests with describe()
 describe('Employee', () => {
+
+  // Testing typeof new instance is object
   describe('new instance', () => {
     it('should be a new instance', () => {
       const e = new Employee();
@@ -8,6 +13,7 @@ describe('Employee', () => {
     });
   });
 
+  // Testing for name
   describe('getName()', () => {
     it('should return the employee\'s name', () => {
       const testValue = 'Sarah';
@@ -16,6 +22,7 @@ describe('Employee', () => {
     });
   });
 
+  // Testing for ID
   describe('getId()', () => {
     it('should return employee\'s ID', () => {
       const testValue = 100;
@@ -24,6 +31,7 @@ describe('Employee', () => {
     });
   });
 
+  // Testing for email
   describe('getEmail()', () => {
     it('should return employee\'s email', () => {
       const testValue = 'test@gmail.com';

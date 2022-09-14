@@ -1,0 +1,22 @@
+/* Custom CSS clases for team.html output*/
+.red-bg {
+    background-color: rgb(232, 71, 71);
+}
+
+.blue-bg {
+    background-color: rgb(88, 168, 239);
+}
+
+.grey-bg {
+    background-color: rgb(233, 231, 231)
+}
+
+.white-text {
+    color: white;
+}
+
+.card-width {
+    width: 250px;
+}
+
+
