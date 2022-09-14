@@ -1,3 +1,8 @@
+// TODO:
+// consider adding validation
+// Record usage, file generation, and email pop up
+// README
+
 // Had to use 'import' instead of 'require' due to ESM error for packages and custom classes
 import inquirer from 'inquirer';
 import fs from 'fs';
@@ -9,27 +14,16 @@ import renderTeamHTML from './src/renderTeamHTML.js';
 // Array to hold team member objects
 const teamArr = [];
 
-// Initial prompt questions
-const addTeamMemberQ = [
+// User input for Manager role
+
+const confirmManagerQ = [
     {
         type: 'list',
-        name: 'addTeamMember',
-        message: 'Add team member? ',
+        name: 'confirm',
+        message: 'Add manager? ',
         choices: ['Yes', 'No'],
     },
 ]
-
-// Role selection
-const roleQ = [
-    {
-        type: 'list',
-        name: 'role',
-        message: 'Role: ',
-        choices: ['Manager', 'Engineer', 'Intern', 'None'],
-    },
-]
-
-// User input for Manager role
 const managerQs = [
     {
         type: 'input',
@@ -52,6 +46,26 @@ const managerQs = [
         message: 'Office Number: ',
     },
 ];
+
+// Initial prompt questions
+const addTeamMemberQ = [
+    {
+        type: 'list',
+        name: 'addTeamMember',
+        message: 'Add team member? ',
+        choices: ['Yes', 'No'],
+    },
+]
+
+// Role selection
+const roleQ = [
+    {
+        type: 'list',
+        name: 'role',
+        message: 'Role: ',
+        choices: ['Engineer', 'Intern', 'None'],
+    },
+]
 
 // User input for Engineer role
 const engineerQs = [
@@ -101,6 +115,36 @@ const internQs = [
     },
 ];
 
+// Function that verifies if user is a manager
+function askConfirmManagerQ(){
+    inquirer
+    .prompt(confirmManagerQ)
+    .then((confirmManagerA) => {
+        if(confirmManagerA.confirm == 'Yes'){
+            askManagerQs();
+        } else {
+            writeToFile();
+        }
+    })
+}
+
+function askManagerQs(){
+    inquirer
+    .prompt(managerQs)
+    .then((managerAs) => {
+
+        // Initial Manager object instance is created and populated with user input, then pushed to teamArr
+        const managerObj = new Manager(managerAs.name, managerAs.id, managerAs.email, managerAs.officeNumber)
+        managerObj.role = managerObj.getRole();
+        teamArr.push(managerObj);
+
+        console.log('Manager added to the team')
+
+        // User is prompted with the option to add another team member
+        askAddTeamMemberQ();
+    })
+}
+
 // Function that allows user to add new team member objects
 function askAddTeamMemberQ(){
     inquirer
@@ -120,9 +164,7 @@ function askRoleQ(){
     .prompt(roleQ)
     .then((roleA) => {
         console.log(roleA, 'roleA console log')
-        if(roleA.role == 'Manager'){
-            askManagerQs();
-        } else if (roleA.role == 'Engineer'){
+        if (roleA.role == 'Engineer'){
             askEngineerQs();
         } else if (roleA.role == 'Intern'){
             askInternQs();
@@ -133,22 +175,22 @@ function askRoleQ(){
 }
 
 // Secondary user input after selecting Manager role
-function askManagerQs(){
-    inquirer
-    .prompt(managerQs)
-    .then((managerAs) => {
+// function askManagerQs(){
+//     inquirer
+//     .prompt(managerQs)
+//     .then((managerAs) => {
         
-        // New Manager object instance is created and populated with user input, then pushed to teamArr
-        const managerObj = new Manager (managerAs.name, managerAs.id, managerAs.email, managerAs.officeNumber);
-        managerObj.role = managerObj.getRole();
-        teamArr.push(managerObj);
+//         // New Manager object instance is created and populated with user input, then pushed to teamArr
+//         const managerObj = new Manager (managerAs.name, managerAs.id, managerAs.email, managerAs.officeNumber);
+//         managerObj.role = managerObj.getRole();
+//         teamArr.push(managerObj);
         
-        console.log('Manager added to team');
+//         console.log('Manager added to team');
 
-        // User is prompted with the option to add another team member
-        askAddTeamMemberQ(); 
-    });
-}
+//         // User is prompted with the option to add another team member
+//         askAddTeamMemberQ(); 
+//     });
+// }
 
 // Secondary user input after selecting Engineer role
 function askEngineerQs(){
@@ -195,7 +237,7 @@ function writeToFile() {
 
 // Function to initiate app
 function init() {
-    askAddTeamMemberQ();
+    askConfirmManagerQ();
 }
 
 // App initiates when node command is entered
