@@ -1,6 +1,5 @@
 // Testing for Intern class
-// Able to use require for tests, but not for Inquirer and FS for some reason. 
-const Intern = require('../lib/Intern');
+const Intern = require('../lib/Intern.js');
 
 // Group together 'Intern' related tests with describe()
 describe('Intern', () => {

@@ -1,6 +1,5 @@
 // Testing for Manager class
-// Able to use require for tests, but not for Inquirer and FS for some reason. 
-const Manager = require('../lib/Manager');
+const Manager = require('../lib/Manager.js');
 
 // Group together 'Manager' related tests with describe()
 describe('Manager', () => {

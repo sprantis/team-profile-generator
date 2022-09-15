@@ -1,6 +1,5 @@
 // Testing for Employee class
-// Able to use require for tests, but not for Inquirer and FS for some reason. 
-const Employee = require('../lib/Employee');
+const Employee = require('../lib/Employee.js');
 
 // Group together 'Employee' related tests with describe()
 describe('Employee', () => {

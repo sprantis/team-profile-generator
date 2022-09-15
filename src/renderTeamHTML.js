@@ -1,7 +1,6 @@
-// Import used instead of require() due to ESM error
-import generateEmptyHTML from "./generateEmptyHTML.js";
+const generateEmptyHTML = require('./generateEmptyHTML.js')
 
-// Function to return string literal of Engineer card populated with user input
+// Returns string literal of Engineer card populated with user input
 function renderEngineer(engineerObj) {
 return `
                 <div class="card mx-2 my-2 card-width">
@@ -20,7 +19,7 @@ return `
 `;
 }
 
-// Function to return string literal of Intern card populated with user input
+// Returns string literal of Intern card populated with user input
 function renderIntern(internObj) {
 return `
                 <div class="card mx-2 my-2 card-width">
@@ -39,7 +38,7 @@ return `
 `;
 }
 
-// Function to return string literal of Manager card populated with user input
+// Returns string literal of Manager card populated with user input
 function renderManager(managerObj) {
 return `
                 <div class="card mx-2 my-2 card-width">
@@ -58,7 +57,7 @@ return `
 `;
 }
 
-// Function to call appropriate function based on role property of object
+// Call appropriate function based on role property of object
 function checkRole(dataObj){
   if (dataObj.role == 'Engineer'){
     return renderEngineer(dataObj);
@@ -71,7 +70,7 @@ function checkRole(dataObj){
   };
 }
 
-// Function that loops through a given array
+// Loop through a given array
 // For each array item, a related HTML string literal is added to the dataString
 // dataString is returned once the loop is over
 function renderTeamArr(dataArr){
@@ -87,7 +86,7 @@ function renderTeamArr(dataArr){
 
 }
 
-// Function that populates a string representation of an "empty" HTML template
+// Populate a string representation of an "empty" HTML template
 // Within the template, the line containing "// placeholder" is replaced the the data string from renderTeamArr()
 // The new HTML string is returned
 function renderTeamHTML(teamArr) {
@@ -98,5 +97,4 @@ function renderTeamHTML(teamArr) {
   return populated;
 }
 
-// Need to use export default in order to import renderTeamHTML in other files due to ESM error
-export default renderTeamHTML;
+module.exports = renderTeamHTML;

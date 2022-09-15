@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "type": "module",
   "scripts": {
     "test": "jest --verbose __tests__/*"
   },
@@ -19,7 +18,7 @@
   },
   "homepage": "https://github.com/sprantis/team-profile-generator#readme",
   "dependencies": {
-    "inquirer": "^9.1.1"
+    "inquirer": "^6.5.2"
   },
   "devDependencies": {
     "jest": "^29.0.3"

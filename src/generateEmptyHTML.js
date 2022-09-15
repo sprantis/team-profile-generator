@@ -1,4 +1,4 @@
-// Function to return string literal of HTML template with no user input
+// Returns string literal of HTML template with no user input
 
 function generateEmptyHTML(){
 return `
@@ -38,5 +38,4 @@ return `
 `;
 }
 
-// Need to use export default in order to import generateEmptyHTML in other files due to ESM error
-export default generateEmptyHTML;
+module.exports = generateEmptyHTML;
